@@ -2,6 +2,8 @@ package com.pipo_petr.pipo_links_short.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity(name="users")
 public class User {
     @Id
@@ -12,12 +14,14 @@ public class User {
     private String username;
     private String password;
 
-    public long getId() {
-        return id;
+    private LocalDateTime createdAt;
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public Long getId() {
+        return id;
     }
 
     public String getUsername() {
@@ -34,5 +38,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
