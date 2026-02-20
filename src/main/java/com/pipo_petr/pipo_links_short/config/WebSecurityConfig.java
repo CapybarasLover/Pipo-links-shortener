@@ -46,9 +46,12 @@ public class WebSecurityConfig {
         JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
         users.setUsersByUsernameQuery(
                 // language=SQL
-                "SELECT username, password FROM users WHERE usename=?"
+                "SELECT username, password, active FROM users WHERE username=?"
         );
-
+        users.setAuthoritiesByUsernameQuery(
+                // language=SQL
+                "SELECT u.username, ur.roles FROM users as u inner join public.user_role ur on u.id = ur.user_id WHERE u.username=?"
+        );
         return users;
     }
     // @formatter:on
